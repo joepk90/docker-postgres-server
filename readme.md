@@ -28,20 +28,31 @@ docker-compose down -v
 docker exec -it docker_postgres_server /bin/bash
 ```
 
+### log into the postgres shell
+```sh
+psql -U postgres
+```
+
+### log into the postgres shell, connected to the docker_postgres_database database
+```sh
+psql -U postgres -d docker_postgres_database
+```
+
 ### export the database (run outside of postgres shell)
 ```sh
-
+pg_dump -U postgres docker_postgres_database > database-export.sql
 ```
 
 ### import a database (run outside of postgres shell)
 ```sh
-
+psql -U postgres docker_postgres_database < database-export.sql
 ```
 
-### log into the postgres shell
+### export the full database (run outside of postgres shell)
 ```sh
-
+pg_dumpall -U postgres > all-database.sql
 ```
+
 
 ## Postgres connection settings
 These setttings can be used in your project settings or database management application (sequel pro)
